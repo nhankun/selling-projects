@@ -13,6 +13,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//ADMIN
+//Route::group(['middleware'=>['can:admin']],function() {
+    Route::prefix('admin')->group(function () {
+        //UserManager
+        Route::prefix('manage')->group(function () {
+            Route::resource("categories", \App\Http\Controllers\Admin\ManageCategoryController::class);
+            Route::get('/category', function () {
+                return view('admin.categories.index');
+            });
+        });
+    });
+//});
+
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/managers/dashboard', function () {
+    return view('managers.dashboards.index');
+});
+
+
