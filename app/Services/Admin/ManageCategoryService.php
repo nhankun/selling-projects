@@ -12,6 +12,11 @@ class ManageCategoryService
         $this->categoryRepository = $categoryRepository;
     }
 
+    public function getAll($nbrPages, $parameters)
+    {
+        return $this->categoryRepository->getAll($nbrPages, $parameters);
+    }
+
     public function findById($id)
     {
         return $this->categoryRepository->getCategoryById($id);

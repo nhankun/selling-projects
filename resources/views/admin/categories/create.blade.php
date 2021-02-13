@@ -23,34 +23,7 @@
 @section("content")
 
     <section class="content">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card card-outline card-info">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            Create category
-                        </h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <!-- form start -->
-                        <form id="quickForm">
-
-                            @include("admin.categories.template")
-
-                        </form>
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                    {{--                    <div class="card-footer">--}}
-                    {{--                        Visit <a href="https://github.com/summernote/summernote/">Summernote</a> documentation for more examples and information about the plugin.--}}
-                    {{--                    </div>--}}
-                </div>
-            </div>
-            <!-- /.col-->
-        </div>
+        @include("admin.categories.template")
     </section>
 
 @endsection

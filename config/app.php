@@ -229,4 +229,15 @@ return [
 
     ],
 
+
+    'nbrPages' => [
+        'back' => [
+            'categories' => 2,
+            'users' => 10,
+            'providers' => 10,
+            'products' => 10,
+            'manufacturers' => 10
+        ]
+    ],
+
 ];

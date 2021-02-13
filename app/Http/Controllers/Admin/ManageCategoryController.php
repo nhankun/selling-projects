@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Services\Admin\ManageCategoryService;
+use App\Services\Indexable;
 use Illuminate\Http\Request;
 
 class ManageCategoryController extends Controller
 {
+    use Indexable;
+
+    private $table;
     private $categoryService;
     /**
      * Display a listing of the resource.
@@ -16,12 +20,25 @@ class ManageCategoryController extends Controller
      */
     public function __construct(ManageCategoryService $categoryService)
     {
+        $this->table = 'categories';
         $this->categoryService = $categoryService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return view("admin.categories.index");
+        $parameters = $this->getParameters($request);
+        $records = $this->categoryService->getAll(config('app.nbrPages.back.'.$this->table),$parameters);
+
+        $links = $records->appends($parameters)->links('pagination');
+
+        if ($request->ajax())
+        {
+            return response()->json([
+                'table' => view('admin.categories.tables',['categories'=>$records])->render(),
+                'pagination' => $links->toHtml(),
+            ]);
+        }
+        return view('admin.categories.index',['categories'=>$records,'links'=>$links]);
     }
 
     /**
